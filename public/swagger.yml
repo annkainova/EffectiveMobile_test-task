@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
-  title: E-commerce
-  description: API для интернет-магазина. Используется для управления товарами, корзиной. 
+  title: E-commerce Effective Mobile
+  description: API для интернет-магазина в рамках тестовго задания. Используется для управления товарами, корзиной. 
   version: 1.0.0
 
 servers:
