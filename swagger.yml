@@ -1,0 +1,186 @@
+openapi: 3.0.3
+info:
+  title: E-commerce
+  description: API для интернет-магазина. Используется для управления товарами, корзиной. 
+  version: 1.0.0
+
+servers:
+  - url: https://ecommerce.io/api/v3
+
+tags:
+  - name: products
+    description: Операции с товарами
+  - name: cart
+    description: Операции с корзиной
+
+paths:
+  /products:
+    get:
+      tags:
+        - products
+      summary: Получить все товары
+      description: Получить список всех товаров из магазина
+      operationId: getProducts
+      responses:
+        '200':
+          description: Успешный запрос с данными для всех товаров
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Product'
+        '400':
+          description: Неверный запрос
+
+  /products/{id}:
+    get:
+      tags:
+        - products
+      summary: Получить детали товара по ID
+      description: Получить подробную информацию о товаре по его ID
+      operationId: getProductById
+      parameters:
+        - name: id
+          in: path
+          description: ID товара
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Успешный запрос с деталями товара
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Product'
+        '404':
+          description: Товар не найден
+        '400':
+          description: Неверный запрос
+
+  /cart:
+    post:
+      tags:
+        - cart
+      summary: Добавить товар в корзину
+      description: Добавить товар в корзину пользователя
+      operationId: addProductToCart
+      requestBody:
+        description: Информация о товаре, который нужно добавить в корзину
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                productId:
+                  type: integer
+                  description: ID товара
+                  example: 1
+                quantity:
+                  type: integer
+                  description: Количество товара
+                  example: 2
+      responses:
+        '201':
+          description: Товар успешно добавлен в корзину
+        '400':
+          description: Неверный запрос
+
+  /cart/{productId}:
+    delete:
+      tags:
+        - cart
+      summary: Удалить товар из корзины
+      description: Удалить товар по его ID из корзины
+      operationId: removeProductFromCart
+      parameters:
+        - name: productId
+          in: path
+          description: ID товара, который нужно удалить из корзины
+          required: true
+          schema:
+            type: integer
+            example: 1
+      responses:
+        '200':
+          description: Товар успешно удален из корзины
+        '404':
+          description: Товар не найден в корзине
+        '400':
+          description: Неверный запрос
+
+components:
+  schemas:
+    Product:
+      type: object
+      required:
+        - id
+        - name
+        - description
+        - prices
+        - categories
+        - productType
+      properties:
+        id:
+          type: string
+          example: "id"
+        productType:
+          type: object
+          required:
+            - typeId
+            - id
+          properties:
+            typeId:
+              type: string
+              example: "product-type"
+            id:
+              type: string
+              example: "id"
+        name:
+          type: string
+          example: "Product name"
+        description:
+          type: string
+          example: "Product description"
+        categories:
+          type: array
+          items:
+            type: object
+            required:
+              - typeId
+              - id
+            properties:
+              typeId:
+                type: string
+                example: "category"
+              id:
+                type: string
+                example: "category-id"
+        prices:
+          type: object
+          required:
+            - currencyCode
+            - centAmount
+          properties:
+            currencyCode:
+              type: string
+              example: "USD"
+            centAmount:
+              type: integer
+              example: 1999  # 19.99 в центах
+        images:
+          type: array
+          items:
+            type: object
+            required:
+              - url
+              - label
+            properties:
+              url:
+                type: string
+                example: "https://example.com/image.jpg"
+              label:
+                type: string
+                example: "Front view of the product"
