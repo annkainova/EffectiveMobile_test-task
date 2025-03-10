@@ -1,3 +1,5 @@
 apis:
   swagger.yml:
     alias: api-title
+  public/swagger.yml:
+    alias: e-commerce-effective-mobile
