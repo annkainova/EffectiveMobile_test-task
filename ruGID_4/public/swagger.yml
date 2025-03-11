@@ -1,0 +1,636 @@
+openapi: 3.0.3
+info:
+  title: E-commerce Effective Mobile
+  description: API для интернет-магазина в рамках тестового задания. Используется для управления товарами, корзиной.
+  version: 1.0.0
+
+servers:
+  - url: https://ecommerce.io/api/v3
+
+tags:
+  - name: flights
+    description: Операции с рейсами
+  - name: tickets
+    description: Операции с билетами
+  - name: offers
+    description: Операции с  специальными предложениями
+  - name: subscriptions
+    description: Операции с подписками
+
+paths:
+  /flights/search:
+    get:
+      tags:
+        - flights
+      summary: Поиск рейсов
+      description: Получить данные о рейсах по заданным параметрам
+      operationId: searchFlights
+      parameters:
+        - name: departure
+          in: query
+          required: true
+          schema:
+            type: string
+            example: 'SVO'
+          description: Код аэропорта отправления (IATA)
+        - name: arrival
+          in: query
+          required: true
+          schema:
+            type: string
+            example: 'IST'
+          description: Код аэропорта прибытия (IATA)
+        - name: date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+            example: '2025-03-01'
+          description: Дата отправления в формате YYYY-MM-DD
+      responses:
+        '200':
+          description: Успешное получение данных о рейсах
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  flights:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Flight'
+        '400':
+          description: Некорректный запрос
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Invalid format'
+        '404':
+          description: Рейсы не найдены
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Flights not found'
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Internal server error'
+
+  /tickets/search:
+    get:
+      tags:
+        - tickets
+      summary: Поиск билетов
+      description: Получить данные о билетах по заданным параметрам
+      operationId: searchTickets
+      parameters:
+        - name: departure
+          in: query
+          required: true
+          schema:
+            type: string
+            example: 'SVO'
+          description: Код аэропорта отправления (IATA)
+        - name: arrival
+          in: query
+          required: true
+          schema:
+            type: string
+            example: 'IST'
+          description: Код аэропорта прибытия (IATA)
+        - name: date
+          in: query
+          required: true
+          schema:
+            type: string
+            format: date
+            example: '2025-03-01'
+          description: Дата отправления в формате YYYY-MM-DD
+        - name: visa_transfer
+          in: query
+          required: false
+          schema:
+            type: boolean
+            example: true
+          description: Поиск билетов c пересадками в странах закрытых для туристов
+        - name: separate_booking
+          in: query
+          required: false
+          schema:
+            type: boolean
+            example: true
+          description: Поиск билетов с раздельным бронированием
+        - name: night_transfer
+          in: query
+          required: false
+          schema:
+            type: boolean
+            example: true
+          description: Поиск билетов с пересадками ночью
+        - name: airoport_change
+          in: query
+          required: false
+          schema:
+            type: boolean
+            example: true
+          description: Поиск билетов с пересадками в аэропортах
+        - name: transfer
+          in: query
+          required: false
+          schema:
+            type: boolean
+            example: true
+          description: Поиск билетов с пересадками
+        - name: luggage
+          in: query
+          required: false
+          schema:
+            type: boolean
+            example: true
+          description: Поиск билетов с багажом
+
+      responses:
+        '200':
+          description: Успешное получение данных о билетах
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  tickets:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Ticket'
+        '400':
+          description: Некорректный запрос
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Invalid format'
+        '404':
+          description: Рейсы не найдены
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Tickets not found'
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Internal server error'
+
+  /tickets/{id}:
+    get:
+      tags:
+        - tickets
+      summary: Получить данные о билете
+      description: Получить данные о билете по его id
+      operationId: getTicketById
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+            example: 1
+          description: ID билета
+      responses:
+        '200':
+          description: Успешное получение данных о билете
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Ticket'
+        '400':
+          description: Некорректный запрос
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Invalid format'
+        '404':
+          description: Билет не найден
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Ticket not found'
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Internal server error'
+
+  /offers:
+    get:
+      tags:
+        - offers
+      summary: Поиск специальных предложений
+      description: Получить данные о специальных предложениях
+      operationId: getOffers
+      responses:
+        '200':
+          description: Успешное получение данных о специальных предложениях
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  offers:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Offer'
+        '404':
+          description: Специальные предложения не найдены
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Offers not found'
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Internal server error'
+
+  /user/subscriptions:
+    post:
+      tags:
+        - subscriptions
+      summary: Оформить подписку на цену
+      description: Оформить подписку на уведомления о снижении цены.
+      operationId: postUserSubscriptions
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/Subscription'
+      responses:
+        '200':
+          description: Подписка успешно оформлена
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  subscriptions:
+                    type: string
+                    example: 'Subscriptions created'
+
+        '400':
+          description: Неверный id полета
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Invalid flight ID'
+        '404':
+          description: Подписки пользователя не найдены
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Subscriptions not found'
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Internal server error'
+
+    delete:
+      tags:
+        - subscriptions
+      summary: Удалить подписку на цену
+      description: Удалить подписку на уведомления о снижении цены.
+      operationId: deleteUserSubscriptions
+      parameters:
+        - name: search_id
+          in: query
+          required: true
+          schema:
+            type: string
+            example: '20240301-SVO-IST-X8F92'
+      responses:
+        '200':
+          description: Подписка успешно удалена
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  subscriptions:
+                    type: string
+                    example: 'Subscriptions deleted'
+
+        '400':
+          description: Неверный id полета
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Invalid flight ID'
+        '404':
+          description: Подписки пользователя не найдены
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Subscriptions not found'
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Internal server error'
+
+components:
+  schemas:
+    Flight:
+      type: object
+      required:
+        - id
+        - title
+        - departure_airport
+        - arrival_airport
+        - departure_time
+        - min_price
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: 'id рейса'
+        title:
+          type: string
+          example: 'Уральские авиалинии'
+          description: 'Название рейса'
+          maxLength: 200
+        departure_airport:
+          type: string
+          example: 'SVO'
+          description: 'Код аэропорта отправления (IATA)'
+        arrival_airport:
+          type: string
+          example: 'IST'
+          description: 'Код аэропорта прибытия (IATA)'
+        departure_time:
+          type: array
+          items:
+            type: string
+            format: time
+          example: ['07:00', '09:10', '10:00']
+          description: 'Время отправления'
+        min_price:
+          type: object
+          properties:
+            value:
+              type: number
+              example: 3999
+              description: 'Минимальная цена'
+              minimum: 0
+            currency:
+              type: string
+              example: 'RUB'
+              description: 'Валюта'
+
+    Ticket:
+      type: object
+      required:
+        - id
+        - badge
+        - price
+        - provider_name
+        - company
+        - departure
+        - arrival
+        - has_transfer
+        - has_visa_transfer
+        - luggage
+        - hand_luggage
+        - is_returnable
+        - is_exchangable
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: 'id билета'
+        badge:
+          type: string
+          example: 'Самый удобный'
+          description: 'Метка билета'
+          maxLength: 50
+        price:
+          type: object
+          properties:
+            value:
+              type: number
+              example: 3999
+              description: 'Цена билета'
+              minimum: 0
+            currency:
+              type: string
+              example: 'RUB'
+              description: 'Валюта'
+        provider_name:
+          type: string
+          description: 'Название поставщика'
+          example: 'На сайте Купибилет'
+        company:
+          type: string
+          description: 'Название компании'
+          example: 'Якутия'
+        departure:
+          type: object
+          properties:
+            town:
+              type: string
+              example: 'Санкт-Петербург'
+              description: 'Город отправления'
+            airport:
+              type: string
+              example: 'SVO'
+              description: 'Код аэропорта отправления (IATA)'
+            date:
+              type: string
+              format: date-time
+              example: '2024-02-23T03:15:00'
+              description: 'Дата отправления'
+        arrival:
+          type: object
+          properties:
+            town:
+              type: string
+              example: 'Санкт-Петербург'
+              description: 'Город прибытия'
+            airport:
+              type: string
+              example: 'SVO'
+              description: 'Код аэропорта прибытия (IATA)'
+            date:
+              type: string
+              format: date-time
+              example: '2024-02-23T03:15:00'
+              description: 'Дата прибытия'
+        has_transfer:
+          type: boolean
+          example: true
+          description: 'Является ли рейс с пересадкой'
+        has_visa_transfer:
+          type: boolean
+          example: true
+          description: 'Является ли рейс с пересадкой с визой'
+        luggage:
+          type: object
+          properties:
+            has_luggage:
+              type: boolean
+              example: true
+              description: 'Является ли рейс с багажом'
+            price:
+              type: object
+              properties:
+                value:
+                  type: number
+                  example: 3999
+                  description: 'Цена багажа'
+                  minimum: 0
+                currency:
+                  type: string
+                  example: 'RUB'
+                  description: 'Валюта'
+        hand_luggage:
+          type: object
+          properties:
+            has_hand_luggage:
+              type: boolean
+              example: true
+              description: 'Является ли рейс с ручным багажом'
+            size:
+              type: string
+              example: '55x20x40'
+              description: 'Размер ручного багажа'
+        is_returnable:
+          type: boolean
+          example: true
+          description: 'Возвращает ли рейс обратно'
+        is_exchangable:
+          type: boolean
+          example: true
+          description: 'Может ли рейс быть заменен'
+
+    Offer:
+      type: object
+      required:
+        - id
+        - title
+        - town
+        - img_url
+        - price
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: 'id предложения'
+        title:
+          type: string
+          example: 'Die Antwoord'
+          description: 'Название предложения'
+          maxLength: 200
+        town:
+          type: string
+          example: 'Будапешт'
+          description: 'Город'
+        img_url:
+          type: string
+          example: 'https://example.com/images/offers/1.jpg'
+          description: 'Ссылка на изображение'
+        price:
+          type: object
+          properties:
+            value:
+              type: number
+              example: 3999
+              description: 'Цена предложения'
+              minimum: 0
+            currency:
+              type: string
+              example: 'RUB'
+              description: 'Валюта'
+
+    Subscription:
+      type: object
+      required:
+        - search_id
+      properties:
+        search_id:
+          type: string
+          example: '20240301-SVO-IST-X8F92'
+          description: 'id подписки'
