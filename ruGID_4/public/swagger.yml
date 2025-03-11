@@ -1,7 +1,7 @@
 openapi: 3.0.3
 info:
-  title: E-commerce Effective Mobile
-  description: API для интернет-магазина в рамках тестового задания. Используется для управления товарами, корзиной.
+  title: Task_4
+  description: API для получения информации о полетах, билетах, специальных предложениях и управления подписками.
   version: 1.0.0
 
 servers:
