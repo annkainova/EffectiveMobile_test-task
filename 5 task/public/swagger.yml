@@ -1,0 +1,110 @@
+openapi: 3.0.3
+info:
+  title: Task_5_3
+  description: API для получения информации о продуктах доступных для покупки ии х ценах.
+  version: 1.0.0
+
+servers:
+  - url: https://ecommerce.io/api/v1
+
+tags:
+  - name: products
+    description: Операции с доступными продуктами
+
+paths:
+  /products:
+    get:
+      tags:
+        - products
+      summary: Получить данные о продуктах
+      description: Получить данные о продуктах доступных для покупки
+      operationId: getAvailableProducts
+      parameters:
+        - name: available
+          in: query
+          required: true
+          schema:
+            type: boolean
+            example: true
+          description: Признак доступности продукта
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+            example: 1
+          description: Номер страницы
+        - name: limit (по умолчанию 15)
+          in: query
+          required: false
+          schema:
+            type: integer
+            example: 15
+          description: Количество продуктов на странице
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  data:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Product'
+        '400':
+          description: Некорректный запрос
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Invalid format'
+        '500':
+          description: Внутренняя ошибка сервера
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Internal server error'
+components:
+  schemas:
+    Product:
+      type: object
+      required:
+        - id
+        - title
+        - price
+        - img_url
+        - description
+        - available
+      properties:
+        id:
+          type: integer
+          example: 1
+        title:
+          type: string
+          example: 'Продукт 1'
+
+        price:
+          type: integer
+          example: 100
+          description: 'цена продукта (в рублях)'
+        img_url:
+          type: string
+          example: 'https://example.com/images/products/1.jpg'
+          description: 'ссылка на изображение'
+        description:
+          type: string
+          example: 'Описание продукта'
+          description: 'описание продукта'
+        available:
+          type: boolean
+          example: true
+          description: 'признак доступности продукта'
