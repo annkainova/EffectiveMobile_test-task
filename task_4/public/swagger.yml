@@ -427,30 +427,39 @@ components:
         id:
           type: integer
           example: 1
+          description: 'ID рейса'
         title:
           type: string
           example: 'Уральские авиалинии'
+          description: 'Название рейса'
+          maxLength: 200
         departure_airport:
           type: string
           example: 'SVO'
+          description: 'Код аэропорта отправления (IATA)'
         arrival_airport:
           type: string
           example: 'IST'
+          description: 'Код аэропорта прибытия (IATA)'
         departure_time:
           type: array
           items:
             type: string
             format: time
           example: ['07:00', '09:10', '10:00']
+          description: 'Время отправления'
         min_price:
           type: object
           properties:
             value:
               type: number
               example: 3999
+              description: 'Минимальная цена'
+              minimum: 0
             currency:
               type: string
               example: 'RUB'
+              description: 'Валюта'
 
     Ticket:
       type: object
@@ -472,9 +481,11 @@ components:
         id:
           type: integer
           example: 1
+          description: 'ID билета'
         badge:
           type: string
           example: 'Самый удобный'
+          description: 'Метка билета'
           maxLength: 50
         price:
           type: object
@@ -482,9 +493,12 @@ components:
             value:
               type: number
               example: 3999
+              description: 'Цена билета'
+              minimum: 0
             currency:
               type: string
               example: 'RUB'
+              description: 'Валюта'
         provider_name:
           type: string
           description: 'Название поставщика'
@@ -499,62 +513,78 @@ components:
             town:
               type: string
               example: 'Санкт-Петербург'
+              description: 'Город отправления'
             airport:
               type: string
               example: 'SVO'
+              description: 'Код аэропорта отправления (IATA)'
             date:
               type: string
               format: date-time
               example: '2024-02-23T03:15:00'
+              description: 'Дата отправления'
         arrival:
           type: object
           properties:
             town:
               type: string
               example: 'Санкт-Петербург'
+              description: 'Город прибытия'
             airport:
               type: string
               example: 'SVO'
+              description: 'Код аэропорта прибытия (IATA)'
             date:
               type: string
               format: date-time
               example: '2024-02-23T03:15:00'
+              description: 'Дата прибытия'
         has_transfer:
           type: boolean
           example: true
+          description: 'Является ли рейс с пересадкой'
         has_visa_transfer:
           type: boolean
           example: true
+          description: 'Является ли рейс с пересадкой и визой'
         luggage:
           type: object
           properties:
             has_luggage:
               type: boolean
               example: true
+              description: 'Есть ли багаж'
             price:
               type: object
               properties:
                 value:
                   type: number
                   example: 3999
+                  description: 'Цена багажа'
+                  minimum: 0
                 currency:
                   type: string
                   example: 'RUB'
+                  description: 'Валюта'
         hand_luggage:
           type: object
           properties:
             has_hand_luggage:
               type: boolean
               example: true
+              description: 'Есть ли ручная кладь'
             size:
               type: string
               example: '55x20x40'
+              description: 'Размер ручной клади'
         is_returnable:
           type: boolean
           example: true
+          description: 'Является ли билет возвратным'
         is_exchangable:
           type: boolean
           example: true
+          description: 'Является ли билет обменяемым'
 
     Offer:
       type: object
@@ -568,24 +598,32 @@ components:
         id:
           type: integer
           example: 1
+          description: 'ID предложения'
         title:
           type: string
           example: 'Die Antwoord'
+          description: 'Название предложения'
+          maxLength: 200
         town:
           type: string
           example: 'Будапешт'
+          description: 'Город'
         img_url:
           type: string
           example: 'https://example.com/images/offers/1.jpg'
+          description: 'Ссылка на изображение'
         price:
           type: object
           properties:
             value:
               type: number
               example: 3999
+              description: 'Цена предложения'
+              minimum: 0
             currency:
               type: string
               example: 'RUB'
+              description: 'Валюта'
 
     Subscription:
       type: object
@@ -595,3 +633,5 @@ components:
         search_id:
           type: string
           example: '20240301-SVO-IST-X8F92'
+          description: 'ID подписки'
+
