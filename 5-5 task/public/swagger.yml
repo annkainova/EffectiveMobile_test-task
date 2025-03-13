@@ -28,7 +28,27 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Shop'
+                  $ref: '#/components/schemas/Restaurant'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Restaurant not found'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Internal Server Error'
 
   /cart:
     get:
@@ -42,10 +62,30 @@ paths:
               schema:
                 type: object
                 properties:
-                  card:
+                  cart:
                     type: array
                     items:
                       $ref: '#/components/schemas/Item'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Cart not found'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Internal Server Error'
 
   /search:
     get:
@@ -57,6 +97,7 @@ paths:
           required: true
           schema:
             type: string
+            example: 'Пицца'
           description: Поисковый запрос
       responses:
         '200':
@@ -66,11 +107,31 @@ paths:
               schema:
                 type: array
                 items:
-                  $ref: '#/components/schemas/Item'
+                  $ref: '#/components/schemas/SearchItem'
+        '404':
+          description: Not Found
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Search not found'
+        '500':
+          description: Internal Server Error
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Internal Server Error'
 
 components:
   schemas:
-    Shop:
+    Restaurant:
       type: object
       required:
         - title
@@ -90,14 +151,13 @@ components:
         time_delivery:
           type: integer
           description: 'Время доставки в минутах'
-          example: '20'
+          example: 20
     Item:
       type: object
       required:
         - title
         - description
         - img_url
-        - price
         - amount
         - currency
         - quantity
@@ -121,3 +181,31 @@ components:
           type: integer
           description: 'Количество товаров в корзине'
           example: 1
+
+    SearchItem:
+      type: object
+      required:
+        - title
+        - description
+        - img_url
+        - price
+        - currency
+        - restaurant
+      properties:
+        title:
+          type: string
+          example: 'Пицца'
+        description:
+          type: string
+          example: 'Пицца с томатным соусом и сыром'
+        img_url:
+          type: string
+          example: 'https://example.com/pizza.png'
+        price:
+          type: number
+          example: 100
+        currency:
+          type: string
+          example: 'RUB'
+        restaurant:
+          $ref: '#/components/schemas/Restaurant'
