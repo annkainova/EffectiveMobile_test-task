@@ -1,0 +1,123 @@
+openapi: 3.0.3
+info:
+  title: Task_5_5
+  description: API для экрана Яндекс Еды в рамках практического задания
+  version: 1.0.0
+
+servers:
+  - url: https://ecommerce.io/api/v1
+
+tags:
+  - name: restaurants
+    description: Операции с магазинами
+  - name: cart
+    description: Операции с корзиной
+  - name: search
+    description: Операции с поиском
+
+paths:
+  /restaurants:
+    get:
+      summary: Получить список ресторанов
+      tags: [restaurants]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Shop'
+
+  /cart:
+    get:
+      summary: Получить содержимое корзины
+      tags: [cart]
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  card:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Item'
+
+  /search:
+    get:
+      summary: Получить список товаров поиска
+      tags: [search]
+      parameters:
+        - name: query
+          in: query
+          required: true
+          schema:
+            type: string
+          description: Поисковый запрос
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Item'
+
+components:
+  schemas:
+    Shop:
+      type: object
+      required:
+        - title
+        - img_url
+        - type
+        - time_delivery
+      properties:
+        title:
+          type: string
+          example: 'Магнит'
+        img_url:
+          type: string
+          example: 'https://magnit.jpeg'
+        type:
+          type: string
+          example: 'Ресторан'
+        time_delivery:
+          type: integer
+          description: 'Время доставки в минутах'
+          example: '20'
+    Item:
+      type: object
+      required:
+        - title
+        - description
+        - img_url
+        - price
+        - amount
+        - currency
+        - quantity
+      properties:
+        title:
+          type: string
+          example: 'Пицца'
+        description:
+          type: string
+          example: 'Пицца с томатным соусом и сыром'
+        img_url:
+          type: string
+          example: 'https://example.com/pizza.png'
+        amount:
+          type: number
+          example: 100
+        currency:
+          type: string
+          example: 'RUB'
+        quantity:
+          type: integer
+          description: 'Количество товаров в корзине'
+          example: 1
