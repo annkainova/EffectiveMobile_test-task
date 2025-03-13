@@ -8,227 +8,32 @@ servers:
   - url: https://ecommerce.io/api/v3
 
 tags:
-  - name: flights
-    description: Операции с рейсами
-  - name: tickets
-    description: Операции с билетами
-  - name: offers
-    description: Операции с  специальными предложениями
-  - name: subscriptions
-    description: Операции с подписками
+  - name: place
+  - name: category
+  - name: search
+  - name: favorite
 
 paths:
-  /flights/search:
+  /places/{placeId}:
     get:
       tags:
-        - flights
-      summary: Поиск рейсов
-      description: Получить данные о рейсах по заданным параметрам
-      operationId: searchFlights
+        - place
+      summary: Получить место по ID
+      description: Возвращает информацию о конкретном месте.
       parameters:
-        - name: departure
-          in: query
-          required: true
-          schema:
-            type: string
-            example: 'SVO'
-          description: Код аэропорта отправления (IATA)
-        - name: arrival
-          in: query
-          required: true
-          schema:
-            type: string
-            example: 'IST'
-          description: Код аэропорта прибытия (IATA)
-        - name: date
-          in: query
-          required: true
-          schema:
-            type: string
-            format: date
-            example: '2025-03-01'
-          description: Дата отправления в формате YYYY-MM-DD
-      responses:
-        '200':
-          description: Успешное получение данных о рейсах
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  flights:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Flight'
-        '400':
-          description: Некорректный запрос
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: 'Invalid format'
-        '404':
-          description: Рейсы не найдены
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: 'Flights not found'
-        '500':
-          description: Внутренняя ошибка сервера
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: 'Internal server error'
-
-  /tickets/search:
-    get:
-      tags:
-        - tickets
-      summary: Поиск билетов
-      description: Получить данные о билетах по заданным параметрам
-      operationId: searchTickets
-      parameters:
-        - name: departure
-          in: query
-          required: true
-          schema:
-            type: string
-            example: 'SVO'
-          description: Код аэропорта отправления (IATA)
-        - name: arrival
-          in: query
-          required: true
-          schema:
-            type: string
-            example: 'IST'
-          description: Код аэропорта прибытия (IATA)
-        - name: date
-          in: query
-          required: true
-          schema:
-            type: string
-            format: date
-            example: '2025-03-01'
-          description: Дата отправления в формате YYYY-MM-DD
-        - name: visa_transfer
-          in: query
-          required: false
-          schema:
-            type: boolean
-            example: true
-          description: Поиск билетов c пересадками в странах закрытых для туристов
-        - name: separate_booking
-          in: query
-          required: false
-          schema:
-            type: boolean
-            example: true
-          description: Поиск билетов с раздельным бронированием
-        - name: night_transfer
-          in: query
-          required: false
-          schema:
-            type: boolean
-            example: true
-          description: Поиск билетов с пересадками ночью
-        - name: airoport_change
-          in: query
-          required: false
-          schema:
-            type: boolean
-            example: true
-          description: Поиск билетов с пересадками в аэропортах
-        - name: transfer
-          in: query
-          required: false
-          schema:
-            type: boolean
-            example: true
-          description: Поиск билетов с пересадками
-        - name: luggage
-          in: query
-          required: false
-          schema:
-            type: boolean
-            example: true
-          description: Поиск билетов с багажом
-
-      responses:
-        '200':
-          description: Успешное получение данных о билетах
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  tickets:
-                    type: array
-                    items:
-                      $ref: '#/components/schemas/Ticket'
-        '400':
-          description: Некорректный запрос
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: 'Invalid format'
-        '404':
-          description: Рейсы не найдены
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: 'Tickets not found'
-        '500':
-          description: Внутренняя ошибка сервера
-          content:
-            application/json:
-              schema:
-                type: object
-                properties:
-                  error:
-                    type: string
-                    example: 'Internal server error'
-
-  /tickets/{id}:
-    get:
-      tags:
-        - tickets
-      summary: Получить данные о билете
-      description: Получить данные о билете по его id
-      operationId: getTicketById
-      parameters:
-        - name: id
+        - name: placeId
           in: path
           required: true
+          description: ID места
           schema:
-            type: integer
-            example: 1
-          description: ID билета
+            type: string
       responses:
         '200':
-          description: Успешное получение данных о билете
+          description: Успешный ответ
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Ticket'
+                $ref: '#/components/schemas/Place'
         '400':
           description: Некорректный запрос
           content:
@@ -238,9 +43,10 @@ paths:
                 properties:
                   error:
                     type: string
-                    example: 'Invalid format'
+                    description: Ошибка
+                    example: 'Invalid ID format'
         '404':
-          description: Билет не найден
+          description: Место не найдено
           content:
             application/json:
               schema:
@@ -248,7 +54,8 @@ paths:
                 properties:
                   error:
                     type: string
-                    example: 'Ticket not found'
+                    description: Ошибка
+                    example: 'Place not found'
         '500':
           description: Внутренняя ошибка сервера
           content:
@@ -258,29 +65,81 @@ paths:
                 properties:
                   error:
                     type: string
+                    description: Ошибка
                     example: 'Internal server error'
 
-  /offers:
+  /place/search:
     get:
       tags:
-        - offers
-      summary: Поиск специальных предложений
-      description: Получить данные о специальных предложениях
-      operationId: getOffers
+        - search
+      summary: Поиск мест
+      parameters:
+        - name: query
+          in: query
+          required: true
+          description: Возвращает список мест по запросу из поиска.
+          schema:
+            type: string
+            example: 'Музей'
+        - name: distance
+          in: query
+          required: false
+          description: Расстояние до центра города (в метрах)
+          schema:
+            type: integer
+            example: 3500
+        - name: rating_min
+          in: query
+          required: false
+          description: Минимальный рейтинг
+          schema:
+            type: number
+            example: 4.5
+        - name: rating_max
+          in: query
+          required: false
+          description: Максимальный рейтинг
+          schema:
+            type: number
+            example: 4.5
+        - name: features
+          in: query
+          required: false
+          description: Особенности и удобства места
+          schema:
+            type: array
+            items:
+              type: string
+              enum:
+                - wifi
+                - parking
+                - pay_by_card
+                - disabled_toilet
+                - entrance_ramp
+        - name: sort_by
+          in: query
+          required: false
+          description: Сортировка
+          schema:
+            type: string
+            enum:
+              - rating_desc
+              - rating_asc
+            example: rating_desc
       responses:
         '200':
-          description: Успешное получение данных о специальных предложениях
+          description: Успешный ответ
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  offers:
+                  places:
                     type: array
                     items:
-                      $ref: '#/components/schemas/Offer'
-        '404':
-          description: Специальные предложения не найдены
+                      $ref: '#/components/schemas/Place'
+        '400':
+          description: Некорректные параметры фильтрации
           content:
             application/json:
               schema:
@@ -288,7 +147,49 @@ paths:
                 properties:
                   error:
                     type: string
-                    example: 'Offers not found'
+                    description: Ошибка
+                    example: 'Invalid filter parameters'
+        '404':
+          description: Места не найдены
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Ошибка
+                    example: 'Place not found'
+        '500':
+          description: Ошибка сервера
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Ошибка
+                    example: 'Internal server error'
+
+  /category:
+    get:
+      tags:
+        - category
+      summary: Получение списка категорий
+      description: Возвращает список категорий.
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  categories:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Category'
         '500':
           description: Внутренняя ошибка сервера
           content:
@@ -298,35 +199,161 @@ paths:
                 properties:
                   error:
                     type: string
+                    description: Ошибка
                     example: 'Internal server error'
 
-  /user/subscriptions:
+  /place/search?category={category}:
+    get:
+      tags:
+        - search
+      summary: Поиск мест по категории
+      description: Возвращает список мест в заданной категории.
+      parameters:
+        - name: category
+          in: query
+          required: true
+          description: Категория
+          schema:
+            type: string
+            example: 'Музей'
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  places:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Place'
+        '404':
+          description: Места не найдены
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Ошибка
+                    example: 'Place not found'
+        '500':
+          description: Ошибка сервера
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Ошибка
+                    example: 'Internal server error'
+
+  /place/map:
+    get:
+      tags:
+        - search
+      summary: Поиск мест по местоположению
+      description: Возвращает список мест в заданном радиусе от координат.
+      parameters:
+        - name: lat
+          in: query
+          required: true
+          description: Широта
+          schema:
+            type: number
+            example: 59.851439
+        - name: lng
+          in: query
+          required: true
+          description: Долгота
+          schema:
+            type: number
+            example: 30.295541
+        - name: radius
+          in: query
+          required: true
+          description: Радиус
+          schema:
+            type: number
+            example: 1000
+      responses:
+        '200':
+          description: Успешный ответ
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  places:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Place'
+        '400':
+          description: Некорректные координаты
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Ошибка
+                    example: 'Invalid coordinates format'
+        '404':
+          description: Места не найдены
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Ошибка
+                    example: 'Place not found'
+        '500':
+          description: Ошибка сервера
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    description: Ошибка
+                    example: 'Internal server error'
+
+  /user/favorite/place/:
     post:
       tags:
-        - subscriptions
-      summary: Оформить подписку на цену
-      description: Оформить подписку на уведомления о снижении цены.
-      operationId: postUserSubscriptions
+        - favorite
+      summary: Добавление места в избранное
       requestBody:
         required: true
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/Subscription'
+              type: string
+              description: ID места
+              example: 123
+              maxLength: 255
+
       responses:
         '200':
-          description: Подписка успешно оформлена
+          description: Успешный ответ
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  subscriptions:
+                  message:
                     type: string
-                    example: 'Subscriptions created'
-
+                    description: Сообщение
+                    example: 'Place added to favorites.'
         '400':
-          description: Неверный id полета
+          description: Неверный id места
           content:
             application/json:
               schema:
@@ -334,9 +361,10 @@ paths:
                 properties:
                   error:
                     type: string
-                    example: 'Invalid flight ID'
+                    description: Ошибка
+                    example: 'Invalid place ID'
         '404':
-          description: Подписки пользователя не найдены
+          description: Место не найдено
           content:
             application/json:
               schema:
@@ -344,9 +372,10 @@ paths:
                 properties:
                   error:
                     type: string
-                    example: 'Subscriptions not found'
+                    description: Ошибка
+                    example: 'Place not found'
         '500':
-          description: Внутренняя ошибка сервера
+          description: Ошибка сервера
           content:
             application/json:
               schema:
@@ -354,35 +383,37 @@ paths:
                 properties:
                   error:
                     type: string
+                    description: Ошибка
                     example: 'Internal server error'
 
+  /user/favorite/place/{placeId}:
     delete:
       tags:
-        - subscriptions
-      summary: Удалить подписку на цену
-      description: Удалить подписку на уведомления о снижении цены.
-      operationId: deleteUserSubscriptions
+        - favorite
+      summary: Удаление места из избранного
       parameters:
-        - name: search_id
-          in: query
+        - name: placeId
+          in: path
           required: true
+          description: ID места
           schema:
             type: string
-            example: '20240301-SVO-IST-X8F92'
+            example: 123
       responses:
         '200':
-          description: Подписка успешно удалена
+          description: Успешный ответ
           content:
             application/json:
               schema:
                 type: object
                 properties:
-                  subscriptions:
+                  message:
                     type: string
-                    example: 'Subscriptions deleted'
+                    description: Сообщение
+                    example: 'Place removed from favorites.'
 
         '400':
-          description: Неверный id полета
+          description: Неверный id места
           content:
             application/json:
               schema:
@@ -390,9 +421,10 @@ paths:
                 properties:
                   error:
                     type: string
-                    example: 'Invalid flight ID'
+                    description: Ошибка
+                    example: 'Invalid place ID'
         '404':
-          description: Подписки пользователя не найдены
+          description: Место не найдено
           content:
             application/json:
               schema:
@@ -400,9 +432,10 @@ paths:
                 properties:
                   error:
                     type: string
-                    example: 'Subscriptions not found'
+                    description: Ошибка
+                    example: 'Place not found'
         '500':
-          description: Внутренняя ошибка сервера
+          description: Ошибка сервера
           content:
             application/json:
               schema:
@@ -410,228 +443,204 @@ paths:
                 properties:
                   error:
                     type: string
+                    description: Ошибка
                     example: 'Internal server error'
 
 components:
   schemas:
-    Flight:
-      type: object
+    Place:
       required:
         - id
-        - title
-        - departure_airport
-        - arrival_airport
-        - departure_time
-        - min_price
+        - name
+        - category
+        - rating
+        - reviews_count
+        - latitude
+        - longitude
+        - address
+        - working_hours
+        - pricing
+        - discount
+        - contacts
+        - social_links
+        - img
+        - description
+        - features
+      type: object
       properties:
         id:
+          type: string
+          description: ID места
+          example: 123
+          maxLength: 255
+        name:
+          type: string
+          description: Название места
+          example: 'Музей Гранд Макет Россия'
+          maxLength: 255
+        category:
+          type: string
+          description: Категория места
+          example: 'Музей'
+          maxLength: 255
+        rating:
+          type: number
+          description: Рейтинг места
+          example: 5.0
+          maximum: 5
+        reviews_count:
           type: integer
-          example: 1
-          description: 'ID рейса'
-        title:
-          type: string
-          example: 'Уральские авиалинии'
-          description: 'Название рейса'
-          maxLength: 200
-        departure_airport:
-          type: string
-          example: 'SVO'
-          description: 'Код аэропорта отправления (IATA)'
-        arrival_airport:
-          type: string
-          example: 'IST'
-          description: 'Код аэропорта прибытия (IATA)'
-        departure_time:
+          description: Количество отзывов
+          example: 2236
+        latitude:
+          type: number
+          description: Широта
+          example: 59.851439
+        longitude:
+          type: number
+          description: Долгота
+          example: 30.295541
+        address:
+          type: object
+          description: Адрес
+          properties:
+            street:
+              type: string
+              description: Улица
+              example: 'Цветочная улица'
+              maxLength: 255
+            building:
+              type: string
+              description: Здание
+              example: '16Л'
+              maxLength: 255
+            distance_km:
+              type: number
+              description: Расстояние до центра города (в метрах)
+              example: 3500
+        working_hours:
+          type: object
+          description: Время работы
+          properties:
+            weekdays:
+              type: object
+              description: Время работы в будние дни
+              properties:
+                open:
+                  type: string
+                  description: Время открытия
+                  example: 10:00
+                close:
+                  type: string
+                  description: Время закрытия
+                  example: 22:00
+            weekends:
+              type: object
+              description: Время работы в выходные дни
+              properties:
+                open:
+                  type: string
+                  description: Время открытия
+                  example: 10:00
+                close:
+                  type: string
+                  description: Время закрытия
+                  example: 22:00
+        pricing:
           type: array
+          description: Цены
+          items:
+            type: object
+            properties:
+              type:
+                type: string
+                description: Тип цены
+                example: 'Детский льготный'
+                minLength: 1
+                maxLength: 255
+              price:
+                type: number
+                description: Цена
+                example: 420
+        discount:
+          type: object
+          description: Скидка
+          properties:
+            value:
+              type: string
+              description: Значение скидки
+              example: '-10%'
+            condition:
+              type: string
+              description: Условие получения скидки
+              example: 'Получите скидку 10% при покупке от 2-х билетов'
+              maxLength: 255
+        contacts:
+          type: array
+          description: Контакты
           items:
             type: string
-            format: time
-          example: ['07:00', '09:10', '10:00']
-          description: 'Время отправления'
-        min_price:
+            description: Контакт
+            example: +7 (984)-774-96-17
+        social_links:
           type: object
+          description: Ссылки на соц. сети
           properties:
-            value:
-              type: number
-              example: 3999
-              description: 'Минимальная цена'
-              minimum: 0
-            currency:
+            website:
               type: string
-              example: 'RUB'
-              description: 'Валюта'
+              description: Ссылка на сайт
+              example: https://example.com
+              format: uri
+            vk:
+              type: string
+              description: Ссылка на VK
+              example: https://vk.com/example
+              format: uri
+            telegram:
+              type: string
+              description: Ссылка на Telegram
+              example: https://t.me/example
+              format: uri
+        img:
+          type: string
+          description: Ссылка на изображение
+          example: 'https://example.com/images/place/123.jpg'
+          format: uri
+        description:
+          type: string
+          description: Описание
+          example: 'История музея...'
+          minLength: 1
+          maxLength: 255
+        features:
+          type: array
+          description: Особенности и удобства места
+          items:
+            type: string
+            description: Особенность
+            example: 'Парковка'
+            minLength: 1
+            maxLength: 255
 
-    Ticket:
-      type: object
+    Category:
       required:
         - id
-        - badge
-        - price
-        - provider_name
-        - company
-        - departure
-        - arrival
-        - has_transfer
-        - has_visa_transfer
-        - luggage
-        - hand_luggage
-        - is_returnable
-        - is_exchangable
-      properties:
-        id:
-          type: integer
-          example: 1
-          description: 'ID билета'
-        badge:
-          type: string
-          example: 'Самый удобный'
-          description: 'Метка билета'
-          maxLength: 50
-        price:
-          type: object
-          properties:
-            value:
-              type: number
-              example: 3999
-              description: 'Цена билета'
-              minimum: 0
-            currency:
-              type: string
-              example: 'RUB'
-              description: 'Валюта'
-        provider_name:
-          type: string
-          description: 'Название поставщика'
-          example: 'На сайте Купибилет'
-        company:
-          type: string
-          description: 'Название компании'
-          example: 'Якутия'
-        departure:
-          type: object
-          properties:
-            town:
-              type: string
-              example: 'Санкт-Петербург'
-              description: 'Город отправления'
-            airport:
-              type: string
-              example: 'SVO'
-              description: 'Код аэропорта отправления (IATA)'
-            date:
-              type: string
-              format: date-time
-              example: '2024-02-23T03:15:00'
-              description: 'Дата отправления'
-        arrival:
-          type: object
-          properties:
-            town:
-              type: string
-              example: 'Санкт-Петербург'
-              description: 'Город прибытия'
-            airport:
-              type: string
-              example: 'SVO'
-              description: 'Код аэропорта прибытия (IATA)'
-            date:
-              type: string
-              format: date-time
-              example: '2024-02-23T03:15:00'
-              description: 'Дата прибытия'
-        has_transfer:
-          type: boolean
-          example: true
-          description: 'Является ли рейс с пересадкой'
-        has_visa_transfer:
-          type: boolean
-          example: true
-          description: 'Является ли рейс с пересадкой и визой'
-        luggage:
-          type: object
-          properties:
-            has_luggage:
-              type: boolean
-              example: true
-              description: 'Есть ли багаж'
-            price:
-              type: object
-              properties:
-                value:
-                  type: number
-                  example: 3999
-                  description: 'Цена багажа'
-                  minimum: 0
-                currency:
-                  type: string
-                  example: 'RUB'
-                  description: 'Валюта'
-        hand_luggage:
-          type: object
-          properties:
-            has_hand_luggage:
-              type: boolean
-              example: true
-              description: 'Есть ли ручная кладь'
-            size:
-              type: string
-              example: '55x20x40'
-              description: 'Размер ручной клади'
-        is_returnable:
-          type: boolean
-          example: true
-          description: 'Является ли билет возвратным'
-        is_exchangable:
-          type: boolean
-          example: true
-          description: 'Является ли билет обменяемым'
-
-    Offer:
-      type: object
-      required:
-        - id
-        - title
-        - town
+        - name
         - img_url
-        - price
+      type: object
       properties:
         id:
-          type: integer
-          example: 1
-          description: 'ID предложения'
-        title:
           type: string
-          example: 'Die Antwoord'
-          description: 'Название предложения'
-          maxLength: 200
-        town:
+          description: ID категории
+          example: 123
+          maxLength: 255
+        name:
           type: string
-          example: 'Будапешт'
-          description: 'Город'
+          description: Название категории
+          example: 'Музей'
+          maxLength: 255
         img_url:
           type: string
-          example: 'https://example.com/images/offers/1.jpg'
-          description: 'Ссылка на изображение'
-        price:
-          type: object
-          properties:
-            value:
-              type: number
-              example: 3999
-              description: 'Цена предложения'
-              minimum: 0
-            currency:
-              type: string
-              example: 'RUB'
-              description: 'Валюта'
-
-    Subscription:
-      type: object
-      required:
-        - search_id
-      properties:
-        search_id:
-          type: string
-          example: '20240301-SVO-IST-X8F92'
-          description: 'ID подписки'
-
+          description: Ссылка на изображение
+          example: 'https://example.com/images/category/123.jpg'
+          format: uri
