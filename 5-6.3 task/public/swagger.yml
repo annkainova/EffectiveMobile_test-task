@@ -1,0 +1,271 @@
+openapi: 3.0.3
+info:
+  title: Task_5-6.3
+  description: |
+    API для сети кинотеатров. Позволят просматривать список фильмов,
+    добавлять и удалять фильмы из избранного.
+  version: 1.0.0
+
+servers:
+  - url: https://cinema.io/api/v1
+
+tags:
+  - name: movies
+  - name: favorites
+
+paths:
+  /movies:
+    get:
+      tags:
+        - movies
+      summary: Получение списка фильмов
+      description: Получение списка фильмов
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  movies:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/Movie'
+        '404':
+          description: Фильмы не найдены
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Movies not found"
+        '500':
+          description: 'Internal Server Error'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Internal Server Error'
+  /movies/{id}:
+    get:
+      tags:
+        - movies
+      summary: Получение фильма по ID
+      description: Получение фильма по ID
+      parameters:
+        - name: id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Movie'
+        '400':
+          description: Некорректный запрос
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid movie ID"
+        '404':
+          description: Фильм не найден
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Movie not found"
+        '500':
+          description: 'Internal Server Error'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Internal Server Error'
+  /favorites:
+    post:
+      tags:
+        - favorites
+      summary: Добавление фильма в избранное (без авторизации)
+      description: Добавляет фильм в избранное для текущей сессии пользователя
+      parameters:
+        - name: session_id
+          in: header
+          required: true
+          schema:
+            type: string
+          example: 'abc123xyz'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                movie_id:
+                  type: integer
+                  example: 1
+                  description: 'ID фильма'
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  movie_id:
+                    type: string
+                    example: 'Movie added to favorites'
+                    description: 'Фильм добавлен в избранное'
+        '400':
+          description: Некорректный запрос
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid movie ID"
+        '404':
+          description: Фильм не найден
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Movie not found"
+        '500':
+          description: 'Internal Server Error'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Internal Server Error'
+  /favorites/{movie_id}:
+    delete:
+      tags:
+        - favorites
+      summary: Удаление фильма из избранного (без авторизации)
+      description: Удаляет фильм из избранного для текущей сессии пользователя
+      parameters:
+        - name: session_id
+          in: header
+          required: true
+          schema:
+            type: string
+          example: 'abc123xyz'
+        - name: movie_id
+          in: path
+          required: true
+          schema:
+            type: integer
+      responses:
+        '200':
+          description: 'OK'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  movie_id:
+                    type: string
+                    example: 'Movie removed from favorites'
+                    description: 'Фильм удален из избранного'
+        '400':
+          description: Некорректный запрос
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Invalid movie ID"
+        '404':
+          description: Фильм не найден в избранном
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: "Movie not found in favorites"
+        '500':
+          description: 'Internal Server Error'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Internal Server Error'
+
+components:
+  schemas:
+    Movie:
+      type: object
+      required:
+        - id
+        - title
+        - description
+        - poster
+        - duration
+        - genre
+        - country
+      properties:
+        id:
+          type: integer
+          example: 1
+          description: 'ID фильма'
+        title:
+          type: string
+          example: 'Movie title'
+          maxLength: 200
+          description: 'Название фильма'
+        description:
+          type: string
+          example: 'Movie description'
+          maxLength: 500
+          description: 'Описание фильма'
+        poster:
+          type: string
+          example: 'https://example.com/poster.jpg'
+          description: 'URL постера'
+        duration:
+          type: integer
+          example: 152
+          description: 'Продолжительность фильма в минутах'
+        genre:
+          type: array
+          items:
+            type: string
+          example: ['Action', 'Adventure', 'Crime']
+          description: 'Жанры фильма'
