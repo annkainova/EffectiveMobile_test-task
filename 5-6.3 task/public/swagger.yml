@@ -20,6 +20,19 @@ paths:
         - movies
       summary: Получение списка фильмов
       description: Получение списка фильмов
+      parameters:
+        - name: page
+          in: query
+          required: false
+          schema:
+            type: integer
+          example: 1
+        - name: limit
+          in: query
+          required: false
+          schema:
+            type: integer
+          example: 10
       responses:
         '200':
           description: 'OK'
