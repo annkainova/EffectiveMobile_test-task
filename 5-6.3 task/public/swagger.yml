@@ -54,7 +54,7 @@ paths:
                 properties:
                   error:
                     type: string
-                    example: "Movies not found"
+                    example: 'Movies not found'
         '500':
           description: 'Internal Server Error'
           content:
@@ -93,7 +93,7 @@ paths:
                 properties:
                   error:
                     type: string
-                    example: "Invalid movie ID"
+                    example: 'Invalid movie ID'
         '404':
           description: Фильм не найден
           content:
@@ -103,7 +103,7 @@ paths:
                 properties:
                   error:
                     type: string
-                    example: "Movie not found"
+                    example: 'Movie not found'
         '500':
           description: 'Internal Server Error'
           content:
@@ -118,15 +118,8 @@ paths:
     post:
       tags:
         - favorites
-      summary: Добавление фильма в избранное (без авторизации)
-      description: Добавляет фильм в избранное для текущей сессии пользователя
-      parameters:
-        - name: session_id
-          in: header
-          required: true
-          schema:
-            type: string
-          example: 'abc123xyz'
+      summary: Добавление фильма в избранное
+      description: Добавляет фильм в избранное
       requestBody:
         required: true
         content:
@@ -138,6 +131,14 @@ paths:
                   type: integer
                   example: 1
                   description: 'ID фильма'
+      parameters:
+        - name: Authorization
+          in: header
+          required: true
+          schema:
+            type: string
+          example: 'Bearer <token>'
+
       responses:
         '200':
           description: 'OK'
@@ -146,10 +147,16 @@ paths:
               schema:
                 type: object
                 properties:
-                  movie_id:
+                  message:
                     type: string
                     example: 'Movie added to favorites'
                     description: 'Фильм добавлен в избранное'
+                  favorites:
+                    type: array
+                    items:
+                      type: integer
+                      example: 1
+                      description: 'ID фильма'
         '400':
           description: Некорректный запрос
           content:
@@ -159,7 +166,7 @@ paths:
                 properties:
                   error:
                     type: string
-                    example: "Invalid movie ID"
+                    example: 'Invalid movie ID'
         '404':
           description: Фильм не найден
           content:
@@ -169,7 +176,7 @@ paths:
                 properties:
                   error:
                     type: string
-                    example: "Movie not found"
+                    example: 'Movie not found'
         '500':
           description: 'Internal Server Error'
           content:
@@ -184,20 +191,21 @@ paths:
     delete:
       tags:
         - favorites
-      summary: Удаление фильма из избранного (без авторизации)
-      description: Удаляет фильм из избранного для текущей сессии пользователя
+      summary: Удаление фильма из избранного
+      description: Удаляет фильм из избранного
       parameters:
-        - name: session_id
+        - name: Authorization
           in: header
           required: true
           schema:
             type: string
-          example: 'abc123xyz'
+          example: 'Bearer <token>'
         - name: movie_id
           in: path
           required: true
           schema:
             type: integer
+          example: 1
       responses:
         '200':
           description: 'OK'
@@ -206,10 +214,11 @@ paths:
               schema:
                 type: object
                 properties:
-                  movie_id:
+                  message:
                     type: string
                     example: 'Movie removed from favorites'
                     description: 'Фильм удален из избранного'
+
         '400':
           description: Некорректный запрос
           content:
@@ -219,7 +228,7 @@ paths:
                 properties:
                   error:
                     type: string
-                    example: "Invalid movie ID"
+                    example: 'Invalid movie ID'
         '404':
           description: Фильм не найден в избранном
           content:
@@ -229,7 +238,7 @@ paths:
                 properties:
                   error:
                     type: string
-                    example: "Movie not found in favorites"
+                    example: 'Movie not found in favorites'
         '500':
           description: 'Internal Server Error'
           content:

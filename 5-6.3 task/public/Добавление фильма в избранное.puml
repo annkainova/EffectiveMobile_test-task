@@ -1,0 +1,32 @@
+/'Добавление фильма в избранное'/
+@startuml
+skinparam backgroundColor #FFFFFF
+actor       Actor as A
+participant Client as C
+participant Балансировщик_Соединения as B
+participant Сервис_пользователей as S
+participant Database_Пользователей as D
+
+autonumber 1.1
+alt Пользователь авторизован
+    A -> C : Нажимает "Добавить в избранное"
+    C -> B : POST /favorites
+    B -> S : Добавить фильм в избранное
+    activate S
+    S -> D : SQL insert
+    activate D
+    D --> S : OK
+    deactivate D
+    S --> B : "Movie added to favorites"
+    deactivate S
+    B --> C : JSON
+    C --> A : Кнопка меняется на "Удалить из избранного"
+
+else Неавторизован
+    A -> C : Нажимает "Добавить в избранное"
+    C -> C : Добавляет movieId в localStorage["favorites"]
+    C --> A : Кнопка меняется на "Удалить из избранного"
+end
+
+
+@enduml

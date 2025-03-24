@@ -1,0 +1,57 @@
+/'Просмотр страницы каталога фильмов'/
+@startuml
+skinparam backgroundColor #FFFFFF
+actor       Actor as A
+participant Client as C
+/'participant Server as S'/
+participant Балансировщик_Соединения as B
+participant Сервис_Управления_Сеансами as S
+participant Database_Сеансы as D
+
+autonumber 1.1
+A -> C : На странице каталога с фильмами, \nкликает на фильм
+activate C
+C -> B : Запрос на информацию \nо конкретном фильме \n<b>GET /movies/{id}</b>
+activate B
+B -> S : Переводит запрос на сервер
+activate S
+deactivate B
+S -> D : SQL запрос: получить информацию \nо конкретном фильме
+activate D
+D --> S : Ответ
+deactivate D
+S --> B : Ответ: JSON
+activate B
+deactivate S
+
+B --> C : Ответ: JSON
+deactivate B
+
+C -> C : Рендер каталога
+C --> A : Отображение страницы каталога
+
+
+
+alt Фильм не найден
+C -> B : Запрос на информацию \nо конкретном фильме \n<b>GET /movies/{id}</b>
+activate B
+B -> S : Переводит запрос на сервер
+activate S
+deactivate B
+S -> D : SQL запрос: получить информацию \nо конкретном фильме
+activate D
+D --> S : Пустой ответ
+deactivate D
+S --> B : Ответ: 404 Movie Not Found
+activate B
+deactivate S
+B --> C : Ответ: 404 Movie Not Found
+deactivate B
+
+C -> C : Рендер страницы с ошибкой
+C --> A : Отображение страницы \nс ошибкой: "Фильм не найден"
+end
+
+deactivate C
+
+@enduml
