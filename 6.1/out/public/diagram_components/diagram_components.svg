@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?><svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" contentScriptType="application/ecmascript" contentStyleType="text/css" height="991px" preserveAspectRatio="none" style="width:1205px;height:991px;" version="1.1" viewBox="0 0 1205 991" width="1205px" zoomAndPan="magnify"><defs><filter height="300%" id="fkcmzexa30kqq" width="300%" x="-1" y="-1"><feGaussianBlur result="blurOut" stdDeviation="2.0"/><feColorMatrix in="blurOut" result="blurOut2" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 .4 0"/><feOffset dx="4.0" dy="4.0" in="blurOut2" result="blurOut3"/><feBlend in="SourceGraphic" in2="blurOut3" mode="normal"/></filter></defs><g><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="761.4531" style="stroke:#A80036;stroke-width:1.0;" width="10" x="315.5" y="135.1094"/><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="59.3105" style="stroke:#A80036;stroke-width:1.0;" width="10" x="562.5" y="195.041"/><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="59.3105" style="stroke:#A80036;stroke-width:1.0;" width="10" x="562.5" y="357.5938"/><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="59.3105" style="stroke:#A80036;stroke-width:1.0;" width="10" x="562.5" y="572.7676"/><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="59.3105" style="stroke:#A80036;stroke-width:1.0;" width="10" x="562.5" y="735.3203"/><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="163.2422" style="stroke:#A80036;stroke-width:1.0;" width="10" x="810.5" y="224.3516"/><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="163.2422" style="stroke:#A80036;stroke-width:1.0;" width="10" x="810.5" y="602.0781"/><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="29.3105" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1106.5" y="298.9727"/><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="29.3105" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1106.5" y="676.6992"/><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="386.0371" style="stroke:#000000;stroke-width:2.0;" width="1181.5" x="10" y="503.5254"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="41" x2="41" y1="88.4883" y2="906.5625"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="320.5" x2="320.5" y1="88.4883" y2="906.5625"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="567" x2="567" y1="88.4883" y2="906.5625"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="815.5" x2="815.5" y1="88.4883" y2="906.5625"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:5.0,5.0;" x1="1111.5" x2="1111.5" y1="88.4883" y2="906.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="37" x="20" y="85.5352">Actor</text><ellipse cx="41.5" cy="15" fill="#FEFECE" filter="url(#fkcmzexa30kqq)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M41.5,23 L41.5,50 M28.5,31 L54.5,31 M41.5,50 L28.5,65 M41.5,50 L54.5,65 " fill="none" filter="url(#fkcmzexa30kqq)" style="stroke:#A80036;stroke-width:2.0;"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="37" x="20" y="919.0977">Actor</text><ellipse cx="41.5" cy="932.0508" fill="#FEFECE" filter="url(#fkcmzexa30kqq)" rx="8" ry="8" style="stroke:#A80036;stroke-width:2.0;"/><path d="M41.5,940.0508 L41.5,967.0508 M28.5,948.0508 L54.5,948.0508 M41.5,967.0508 L28.5,982.0508 M41.5,967.0508 L54.5,982.0508 " fill="none" filter="url(#fkcmzexa30kqq)" style="stroke:#A80036;stroke-width:2.0;"/><rect fill="#FEFECE" filter="url(#fkcmzexa30kqq)" height="30.4883" style="stroke:#A80036;stroke-width:1.5;" width="54" x="291.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="40" x="298.5" y="73.5352">Client</text><rect fill="#FEFECE" filter="url(#fkcmzexa30kqq)" height="30.4883" style="stroke:#A80036;stroke-width:1.5;" width="54" x="291.5" y="905.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="40" x="298.5" y="926.0977">Client</text><rect fill="#FEFECE" filter="url(#fkcmzexa30kqq)" height="30.4883" style="stroke:#A80036;stroke-width:1.5;" width="219" x="456" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="205" x="463" y="73.5352">Балансировщик_Соединения</text><rect fill="#FEFECE" filter="url(#fkcmzexa30kqq)" height="30.4883" style="stroke:#A80036;stroke-width:1.5;" width="219" x="456" y="905.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="205" x="463" y="926.0977">Балансировщик_Соединения</text><rect fill="#FEFECE" filter="url(#fkcmzexa30kqq)" height="30.4883" style="stroke:#A80036;stroke-width:1.5;" width="230" x="698.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="216" x="705.5" y="73.5352">Сервис_Управления_Сеансами</text><rect fill="#FEFECE" filter="url(#fkcmzexa30kqq)" height="30.4883" style="stroke:#A80036;stroke-width:1.5;" width="230" x="698.5" y="905.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="216" x="705.5" y="926.0977">Сервис_Управления_Сеансами</text><rect fill="#FEFECE" filter="url(#fkcmzexa30kqq)" height="30.4883" style="stroke:#A80036;stroke-width:1.5;" width="136" x="1041.5" y="53"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="122" x="1048.5" y="73.5352">Database_Сеансы</text><rect fill="#FEFECE" filter="url(#fkcmzexa30kqq)" height="30.4883" style="stroke:#A80036;stroke-width:1.5;" width="136" x="1041.5" y="905.5625"/><text fill="#000000" font-family="sans-serif" font-size="14" lengthAdjust="spacing" textLength="122" x="1048.5" y="926.0977">Database_Сеансы</text><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="761.4531" style="stroke:#A80036;stroke-width:1.0;" width="10" x="315.5" y="135.1094"/><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="59.3105" style="stroke:#A80036;stroke-width:1.0;" width="10" x="562.5" y="195.041"/><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="59.3105" style="stroke:#A80036;stroke-width:1.0;" width="10" x="562.5" y="357.5938"/><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="59.3105" style="stroke:#A80036;stroke-width:1.0;" width="10" x="562.5" y="572.7676"/><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="59.3105" style="stroke:#A80036;stroke-width:1.0;" width="10" x="562.5" y="735.3203"/><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="163.2422" style="stroke:#A80036;stroke-width:1.0;" width="10" x="810.5" y="224.3516"/><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="163.2422" style="stroke:#A80036;stroke-width:1.0;" width="10" x="810.5" y="602.0781"/><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="29.3105" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1106.5" y="298.9727"/><rect fill="#FFFFFF" filter="url(#fkcmzexa30kqq)" height="29.3105" style="stroke:#A80036;stroke-width:1.0;" width="10" x="1106.5" y="676.6992"/><polygon fill="#A80036" points="303.5,131.1094,313.5,135.1094,303.5,139.1094,307.5,135.1094" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="41.5" x2="309.5" y1="135.1094" y2="135.1094"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="21" x="48.5" y="122.7119">1.1</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="226" x="73.5" y="115.0566">На странице каталога с фильмами,</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="115" x="73.5" y="130.3672">кликает на фильм</text><polygon fill="#A80036" points="550.5,191.041,560.5,195.041,550.5,199.041,554.5,195.041" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="325.5" x2="556.5" y1="195.041" y2="195.041"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="21" x="332.5" y="174.9883">1.2</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="154" x="357.5" y="159.6777">Запрос на информацию</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="141" x="357.5" y="174.9883">о конкретном фильме</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="116" x="357.5" y="190.2988">GET /movies/{id}</text><polygon fill="#A80036" points="798.5,220.3516,808.5,224.3516,798.5,228.3516,802.5,224.3516" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="572.5" x2="804.5" y1="224.3516" y2="224.3516"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="21" x="579.5" y="219.6094">1.3</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="185" x="604.5" y="219.6094">Переводит запрос на сервер</text><polygon fill="#A80036" points="1094.5,294.9727,1104.5,298.9727,1094.5,302.9727,1098.5,298.9727" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="820.5" x2="1100.5" y1="298.9727" y2="298.9727"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="21" x="827.5" y="286.5752">1.4</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="229" x="852.5" y="278.9199">SQL запрос: получить информацию</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="141" x="852.5" y="294.2305">о конкретном фильме</text><polygon fill="#A80036" points="831.5,324.2832,821.5,328.2832,831.5,332.2832,827.5,328.2832" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="825.5" x2="1110.5" y1="328.2832" y2="328.2832"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="21" x="837.5" y="323.541">1.5</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="36" x="862.5" y="323.541">Ответ</text><polygon fill="#A80036" points="583.5,353.5938,573.5,357.5938,583.5,361.5938,579.5,357.5938" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="577.5" x2="809.5" y1="357.5938" y2="357.5938"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="21" x="589.5" y="352.8516">1.6</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="75" x="614.5" y="352.8516">Ответ: JSON</text><polygon fill="#A80036" points="336.5,412.9043,326.5,416.9043,336.5,420.9043,332.5,416.9043" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="330.5" x2="566.5" y1="416.9043" y2="416.9043"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="21" x="342.5" y="412.1621">1.7</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="75" x="367.5" y="412.1621">Ответ: JSON</text><line style="stroke:#A80036;stroke-width:1.0;" x1="325.5" x2="367.5" y1="446.2148" y2="446.2148"/><line style="stroke:#A80036;stroke-width:1.0;" x1="367.5" x2="367.5" y1="446.2148" y2="459.2148"/><line style="stroke:#A80036;stroke-width:1.0;" x1="326.5" x2="367.5" y1="459.2148" y2="459.2148"/><polygon fill="#A80036" points="336.5,455.2148,326.5,459.2148,336.5,463.2148,332.5,459.2148" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="21" x="332.5" y="441.4727">1.8</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="106" x="357.5" y="441.4727">Рендер каталога</text><polygon fill="#A80036" points="52.5,484.5254,42.5,488.5254,52.5,492.5254,48.5,488.5254" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="46.5" x2="314.5" y1="488.5254" y2="488.5254"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="21" x="58.5" y="483.7832">1.9</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="212" x="83.5" y="483.7832">Отображение страницы каталога</text><path d="M10,503.5254 L72,503.5254 L72,510.5254 L62,520.5254 L10,520.5254 L10,503.5254 " fill="#EEEEEE" style="stroke:#000000;stroke-width:1.0;"/><rect fill="none" height="386.0371" style="stroke:#000000;stroke-width:2.0;" width="1181.5" x="10" y="503.5254"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="17" x="25" y="517.0938">alt</text><text fill="#000000" font-family="sans-serif" font-size="11" font-weight="bold" lengthAdjust="spacing" textLength="106" x="87" y="516.1602">[Фильм не найден]</text><polygon fill="#A80036" points="550.5,568.7676,560.5,572.7676,550.5,576.7676,554.5,572.7676" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="325.5" x2="556.5" y1="572.7676" y2="572.7676"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="30" x="332.5" y="552.7148">1.10</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="154" x="366.5" y="537.4043">Запрос на информацию</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="141" x="366.5" y="552.7148">о конкретном фильме</text><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="116" x="366.5" y="568.0254">GET /movies/{id}</text><polygon fill="#A80036" points="798.5,598.0781,808.5,602.0781,798.5,606.0781,802.5,602.0781" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="572.5" x2="804.5" y1="602.0781" y2="602.0781"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="30" x="579.5" y="597.3359">1.11</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="185" x="613.5" y="597.3359">Переводит запрос на сервер</text><polygon fill="#A80036" points="1094.5,672.6992,1104.5,676.6992,1094.5,680.6992,1098.5,676.6992" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;" x1="820.5" x2="1100.5" y1="676.6992" y2="676.6992"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="30" x="827.5" y="664.3018">1.12</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="229" x="861.5" y="656.6465">SQL запрос: получить информацию</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="141" x="861.5" y="671.957">о конкретном фильме</text><polygon fill="#A80036" points="831.5,702.0098,821.5,706.0098,831.5,710.0098,827.5,706.0098" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="825.5" x2="1110.5" y1="706.0098" y2="706.0098"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="30" x="837.5" y="701.2676">1.13</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="84" x="871.5" y="701.2676">Пустой ответ</text><polygon fill="#A80036" points="583.5,731.3203,573.5,735.3203,583.5,739.3203,579.5,735.3203" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="577.5" x2="809.5" y1="735.3203" y2="735.3203"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="30" x="589.5" y="730.5781">1.14</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="179" x="623.5" y="730.5781">Ответ: 404 Movie Not Found</text><polygon fill="#A80036" points="336.5,790.6309,326.5,794.6309,336.5,798.6309,332.5,794.6309" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="330.5" x2="566.5" y1="794.6309" y2="794.6309"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="30" x="342.5" y="789.8887">1.15</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="179" x="376.5" y="789.8887">Ответ: 404 Movie Not Found</text><line style="stroke:#A80036;stroke-width:1.0;" x1="325.5" x2="367.5" y1="823.9414" y2="823.9414"/><line style="stroke:#A80036;stroke-width:1.0;" x1="367.5" x2="367.5" y1="823.9414" y2="836.9414"/><line style="stroke:#A80036;stroke-width:1.0;" x1="326.5" x2="367.5" y1="836.9414" y2="836.9414"/><polygon fill="#A80036" points="336.5,832.9414,326.5,836.9414,336.5,840.9414,332.5,836.9414" style="stroke:#A80036;stroke-width:1.0;"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="30" x="332.5" y="819.1992">1.16</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="185" x="366.5" y="819.1992">Рендер страницы с ошибкой</text><polygon fill="#A80036" points="52.5,877.5625,42.5,881.5625,52.5,885.5625,48.5,881.5625" style="stroke:#A80036;stroke-width:1.0;"/><line style="stroke:#A80036;stroke-width:1.0;stroke-dasharray:2.0,2.0;" x1="46.5" x2="314.5" y1="881.5625" y2="881.5625"/><text fill="#000000" font-family="sans-serif" font-size="13" font-weight="bold" lengthAdjust="spacing" textLength="30" x="58.5" y="869.165">1.17</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="152" x="92.5" y="861.5098">Отображение страницы</text><text fill="#000000" font-family="sans-serif" font-size="13" lengthAdjust="spacing" textLength="198" x="92.5" y="876.8203">с ошибкой: "Фильм не найден"</text><!--MD5=[e2ce7dc40bb1a1bd21dee73f7e0c84e6]
+@startuml
+skinparam backgroundColor #FFFFFF
+actor       Actor as A
+participant Client as C
+/'participant Server as S'/
+participant Балансировщик_Соединения as B
+participant Сервис_Управления_Сеансами as S
+participant Database_Сеансы as D
+
+autonumber 1.1
+A -> C : На странице каталога с фильмами, \nкликает на фильм
+activate C
+C -> B : Запрос на информацию \nо конкретном фильме \n<b>GET /movies/{id}</b>
+activate B
+B -> S : Переводит запрос на сервер
+activate S
+deactivate B
+S -> D : SQL запрос: получить информацию \nо конкретном фильме
+activate D
+D - -> S : Ответ
+deactivate D
+S - -> B : Ответ: JSON
+activate B
+deactivate S
+
+B - -> C : Ответ: JSON
+deactivate B
+
+C -> C : Рендер каталога
+C - -> A : Отображение страницы каталога
+
+
+
+alt Фильм не найден
+C -> B : Запрос на информацию \nо конкретном фильме \n<b>GET /movies/{id}</b>
+activate B
+B -> S : Переводит запрос на сервер
+activate S
+deactivate B
+S -> D : SQL запрос: получить информацию \nо конкретном фильме
+activate D
+D - -> S : Пустой ответ
+deactivate D
+S - -> B : Ответ: 404 Movie Not Found
+activate B
+deactivate S
+B - -> C : Ответ: 404 Movie Not Found
+deactivate B
+
+C -> C : Рендер страницы с ошибкой
+C - -> A : Отображение страницы \nс ошибкой: "Фильм не найден"
+end
+
+deactivate C
+
+@enduml
+
+@startuml
+skinparam backgroundColor #FFFFFF
+actor       Actor as A
+participant Client as C
+participant Балансировщик_Соединения as B
+participant Сервис_Управления_Сеансами as S
+participant Database_Сеансы as D
+
+autonumber 1.1
+A -> C : На странице каталога с фильмами, \nкликает на фильм
+activate C
+C -> B : Запрос на информацию \nо конкретном фильме \n<b>GET /movies/{id}</b>
+activate B
+B -> S : Переводит запрос на сервер
+activate S
+deactivate B
+S -> D : SQL запрос: получить информацию \nо конкретном фильме
+activate D
+D - -> S : Ответ
+deactivate D
+S - -> B : Ответ: JSON
+activate B
+deactivate S
+
+B - -> C : Ответ: JSON
+deactivate B
+
+C -> C : Рендер каталога
+C - -> A : Отображение страницы каталога
+
+
+
+alt Фильм не найден
+C -> B : Запрос на информацию \nо конкретном фильме \n<b>GET /movies/{id}</b>
+activate B
+B -> S : Переводит запрос на сервер
+activate S
+deactivate B
+S -> D : SQL запрос: получить информацию \nо конкретном фильме
+activate D
+D - -> S : Пустой ответ
+deactivate D
+S - -> B : Ответ: 404 Movie Not Found
+activate B
+deactivate S
+B - -> C : Ответ: 404 Movie Not Found
+deactivate B
+
+C -> C : Рендер страницы с ошибкой
+C - -> A : Отображение страницы \nс ошибкой: "Фильм не найден"
+end
+
+deactivate C
+
+@enduml
+
+PlantUML version 1.2021.00(Sun Jan 10 11:25:05 CET 2021)
+(MIT source distribution)
+Java Runtime: OpenJDK Runtime Environment
+JVM: OpenJDK 64-Bit Server VM
+Default Encoding: UTF-8
+Language: en
+Country: RU
+--></g></svg>

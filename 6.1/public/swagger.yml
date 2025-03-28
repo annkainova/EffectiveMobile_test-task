@@ -1,0 +1,171 @@
+openapi: 3.0.3
+info:
+  title: Task_6.1
+  description: |
+    API для поиска авиабилетов
+  version: 1.0.0
+
+servers:
+  - url: https://avia.io/api/v1
+
+tags:
+  - name: search
+
+paths:
+  /search:
+    get:
+      tags:
+        - search
+      summary: Поиск авиабилетов
+      description: Поиск авиабилетов
+      parameters:
+        - name: departure
+          in: query
+          required: true
+          schema:
+            type: string
+          example: 'Moscow'
+        - name: arrival
+          in: query
+          required: true
+          schema:
+            type: string
+          example: 'St Petersburg'
+        - name: date_departure
+          in: query
+          required: true
+          schema:
+            type: string
+          example: '2023-01-01'
+        - name: date_return
+          in: query
+          required: false
+          schema:
+            type: string
+          example: '2023-01-01'
+        - name: passenger
+          in: query
+          required: true
+          schema:
+            type: integer
+          example: 1
+        - name: children
+          in: query
+          required: false
+          schema:
+            type: integer
+          example: 0
+        - name: babies
+          in: query
+          required: false
+          schema:
+            type: integer
+          example: 0
+        - name: type
+          in: query
+          required: false
+          schema:
+            type: string
+            enum: ['econom', 'comfort', 'business', 'first_class']
+          example: 'econom'
+      responses:
+        '200':
+          description: 'OK Успешное получение данных о месте'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  results:
+                    type: array
+                    items:
+                      $ref: '#/components/schemas/search'
+
+        '400':
+          description: Некорректный запрос
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Invalid request parameters'
+        '404':
+          description: 'Not Found'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Flights Not Found'
+        '500':
+          description: 'Internal Server Error'
+          content:
+            application/json:
+              schema:
+                type: object
+                properties:
+                  error:
+                    type: string
+                    example: 'Internal Server Error'
+
+components:
+  schemas:
+    search:
+      type: object
+      properties:
+        airline:
+          type: string
+          example: 'Победа'
+          minLength: 2
+          maxLength: 50
+        flight_number:
+          type: [string, 'null']
+          example: null
+        departure_city:
+          type: string
+          example: 'Казань'
+          minLength: 2
+          maxLength: 50
+        arrival_city:
+          type: string
+          example: 'Москва'
+          minLength: 2
+          maxLength: 50
+        departure_airport:
+          type: string
+          example: 'KZN'
+          minLength: 3
+          maxLength: 3
+        arrival_airport:
+          type: string
+          example: 'SVO'
+          minLength: 3
+          maxLength: 3
+        departure_time:
+          type: string
+          example: '2025-03-27T10:55:00'
+          format: 'date-time'
+        arrival_time:
+          type: string
+          example: '2025-03-27T12:45:00'
+          format: 'date-time'
+        duration:
+          type: string
+          example: '1h 50m'
+          pattern: '^[0-9]+h [0-9]+m$'
+        price:
+          type: integer
+          example: 3574
+          minimum: 0
+        baggage_price:
+          type: integer
+          example: 1325
+          minimum: 0
+        seats_left:
+          type: integer
+          example: 3
+          minimum: 0
